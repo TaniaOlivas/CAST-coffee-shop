@@ -1,12 +1,12 @@
 import express from 'express'; //bring in express, import (ES6)
 import path from "path";
-import {fileURLToPath} from "url";
+import { fileURLToPath } from "url";
 import { setupDatabase, getDbConnection } from './database.js';
 
 setupDatabase().catch(console.error);
 
 const app = express(); // Create an instamce of Express
-const port = 3000; // use port 3000
+const port = process.env.PORT || 3000; // use port 3000
 
 const __filename = fileURLToPath(import.meta.url); //get the resolved path to the file
 const __dirname = path.dirname(__filename); //get the name of the currect directory
@@ -24,11 +24,11 @@ app.get('/', async (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-    res.render("pages/about", { title: "About Us"});
+    res.render("pages/about", { title: "About Us" });
 });
 
 app.get("/contact", (req, res) => {
-    res.render("pages/contact", { title: "Contact Us"});
+    res.render("pages/contact", { title: "Contact Us" });
 });
 
 //listen for requests 
